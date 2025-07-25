@@ -1,0 +1,14 @@
+---
+- name: Install multiple packages
+  hosts: all
+  become: yes
+  vars:
+    packages:
+      - git
+      - curl
+      - tree
+  tasks:
+    - name: install-packages
+      apt:
+        name: "{{item}}"
+      loop: "{{packages}}"

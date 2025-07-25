@@ -1,0 +1,33 @@
+logging:
+  receivers:
+    syslog:
+      type: files
+      include_paths:
+{% for path in log_paths %}
+        - {{ path }}
+{% endfor %}
+
+  service:
+    pipelines:
+      default_pipeline:
+        receivers: [syslog]
+
+metrics:
+  receivers:
+    hostmetrics:
+      type: hostmetrics
+      collection_interval: 60s
+      resource_attributes:
+        host_name: {{ host_metric_name }}
+
+  processors:
+    metrics_filter:
+      type: exclude_metrics
+      metrics_pattern: []
+
+  service:
+    pipelines:
+      default_pipeline:
+        receivers: [hostmetrics]
+        processors: [metrics_filter]
+

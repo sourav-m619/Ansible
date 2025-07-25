@@ -1,0 +1,8 @@
+---
+- name: install-ops-agent
+  hosts: [webservers]
+  become: yes
+  roles:
+    - role: googlecloudplatform.google_cloud_ops_agents
+      vars: 
+       agent_type: ops-agent

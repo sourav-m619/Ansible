@@ -1,0 +1,14 @@
+---
+- name: configuring ops agent
+  hosts: [webservers]
+  become: yes
+  tasks:
+    - name: configuring
+      copy:
+        src: /home/alibiswas304/config.yaml
+        dest: /etc/google-cloud-ops-agent/config.yaml
+    - name: restarting the ops agent
+      systemd:
+       name: google-cloud-ops-agent
+       state: restarted
+    

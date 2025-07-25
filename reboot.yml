@@ -1,0 +1,13 @@
+---
+- name: reboot
+  hosts: all
+  become: yes
+  tasks:
+    - name: upgrade
+      apt:
+        upgrade: dist
+        update_cache: yes
+    - name: Reboot the system
+      reboot:
+        msg: "reboot after upgrade"
+        pre_reboot_delay: 10

@@ -1,0 +1,9 @@
+---
+- name: printing-message
+  hosts: localhost
+  vars:
+    my_name: sourav
+  tasks:
+    - name: pritnitg-msg
+      debug:
+        msg: "{{my_name}}"

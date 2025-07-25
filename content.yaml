@@ -1,0 +1,9 @@
+---
+- name: content
+  hosts: all
+  become: yes
+  tasks:
+    - name: content-creating
+      copy:
+        dest: /home/sourav/test.txt
+        content: "hello"

@@ -1,0 +1,19 @@
+- name: Deploy a web application
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Clone web application repository
+      git:
+        repo: 'https://github.com/LondheShubham153/django-notes-app.git'
+        dest: /var/www/app
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+

@@ -1,0 +1,11 @@
+---
+- name: create a user
+  hosts: [webservers]
+  become: true
+  tasks:
+    - name: create a user 'sourav'
+      user:
+        name: sourav
+        shell: /bin/bash
+        home: /home/sourav
+        state: present
